@@ -10,7 +10,7 @@
 
 SetupWebPage::AddModule(
     __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-    'br-patchmanagement/0.1.0',
+    'br-patchmanagement/0.2.0',
     array(
         // Identification
         //
@@ -21,8 +21,7 @@ SetupWebPage::AddModule(
         //
         'dependencies' => array(
             'itop-config-mgmt/2.4.0',
-            'itop-virtualization-mgmt/0.0.0',
-            'teemip-network-mgmt-extended/0.0.0'
+            'itop-virtualization-mgmt/0.0.0'
         ),
         'mandatory' => false,
         'visible' => true,
@@ -57,18 +56,21 @@ if (!class_exists('PatchManagementInstaller')) {
     /**
      * Class PatchManagementInstaller
      *
-     * @since v0.1.0
+     * @since v0.2.0
      */
     class PatchManagementInstaller extends ModuleInstallerAPI
     {
-        /**
-         * @inheritDoc
-         */
+
+        public static function BeforeWritingConfig(Config $oConfiguration)
+        {
+            // If you want to override/force some configuration values, do it here
+            return $oConfiguration;
+        }
         public static function AfterDatabaseCreation(Config $oConfiguration, $sPreviousVersion, $sCurrentVersion)
         {
-            if (version_compare($sPreviousVersion, '0.1.0', '<')) {
+            if (version_compare($sPreviousVersion, '0.2.0', '<')) {
 
-                SetupPage::log_info("|- Upgrading br-patchmanagement from '$sPreviousVersion' to '$sCurrentVersion'.");
+                SetupLog::Info("|- Upgrading br-patchmanagement from '$sPreviousVersion' to '$sCurrentVersion'.");
 
                 $aPMNames = array(
                     'Manually',
@@ -76,12 +78,11 @@ if (!class_exists('PatchManagementInstaller')) {
                     'Delayed Weekend',
                     'Exception Defined',
                 );
-
                 foreach ($aPMNames as $sPMName) {
                     $oPM = MetaModel::NewObject('PatchMethod');
                     $oPM->Set('name', $sPMName);
                     $oPM->DBWrite();
-                    SetupPage::log_info("|  |- PatchMethod '$sPMName' created.");
+                    SetupLog::Info("|  |- PatchMethod '$sPMName' created.");
                 }
             }
         }
