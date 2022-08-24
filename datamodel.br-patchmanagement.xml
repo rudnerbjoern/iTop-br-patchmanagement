@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.7">
+    <!--
+    * @copyright   Copyright (C) 2021 Björn Rudner
+    * @license     https://www.gnu.org/licenses/gpl-3.0.en.html
+    -->
+    <classes>
+        <!-- Add Patch Management Items to FunctionalCI -->
+        <class id="FunctionalCI" _delta="must_exist">
+            <fields>
+                <field id="patchmethod_id" xsi:type="AttributeExternalKey" _delta="define">
+                    <sql>patchmethod_id</sql>
+                    <target_class>PatchMethod</target_class>
+                    <is_null_allowed>true</is_null_allowed>
+                    <on_target_delete>DEL_MANUAL</on_target_delete>
+                    <allow_target_creation>false</allow_target_creation>
+                </field>
+                <field id="patchmethod_name" xsi:type="AttributeExternalField" _delta="define">
+                    <extkey_attcode>patchmethod_id</extkey_attcode>
+                    <target_attcode>name</target_attcode>
+                </field>
+            </fields>
+        </class>
+        <class id="Server" _delta="must_exist">
+            <presentation>
+                <details>
+                    <items>
+                        <item id="col:col2">
+                            <rank>130</rank>
+                            <items>
+                                <item id="fieldset:Server:patchmanagement" _delta="define">
+                                    <rank>28</rank>
+                                    <items>
+
+                                        <item id="patchmethod_id">
+                                            <rank>10</rank>
+                                        </item>
+
+                                    </items>
+                                </item>
+                            </items>
+                        </item>
+                    </items>
+                </details>
+                <search>
+                    <items>
+                        <item id="patchmethod_id" _delta="define">
+                            <rank>170</rank>
+                        </item>
+                    </items>
+                </search>
+            </presentation>
+        </class>
+        <class id="VirtualMachine" _delta="if_exists">
+            <presentation>
+                <details>
+                    <items>
+                        <item id="col:col2" _delta="must_exist">
+                            <rank>90</rank>
+                            <items>
+                                <item id="fieldset:Server:patchmanagement" _delta="define">
+                                    <rank>8</rank>
+                                    <items>
+                                        <item id="patchmethod_id">
+                                            <rank>10</rank>
+                                        </item>
+                                    </items>
+                                </item>
+                            </items>
+                        </item>
+                    </items>
+                </details>
+                <search>
+                    <items>
+                        <item id="patchmethod_id" _delta="define">
+                            <rank>80</rank>
+                        </item>
+                    </items>
+                </search>
+            </presentation>
+        </class>
+        <!-- ***************** Typology ***************** -->
+        <class id="PatchMethod" _delta="define">
+            <parent>Typology</parent>
+            <properties>
+                <category>bizmodel,searchable,configmgmt</category>
+                <abstract>false</abstract>
+                <key_type>autoincrement</key_type>
+                <db_table>patchmethod</db_table>
+                <db_key_field>id</db_key_field>
+                <db_final_class_field />
+                <naming>
+                    <attributes>
+                        <attribute id="name" />
+                    </attributes>
+                </naming>
+                <display_template />
+                <reconciliation>
+                    <attributes>
+                        <attribute id="name" />
+                    </attributes>
+                </reconciliation>
+                <uniqueness_rules>
+                    <rule id="name">
+                        <attributes>
+                            <attribute id="name" />
+                        </attributes>
+                        <filter />
+                        <disabled>false</disabled>
+                        <is_blocking>true</is_blocking>
+                    </rule>
+                </uniqueness_rules>
+            </properties>
+            <fields>
+                <field id="description" xsi:type="AttributeText">
+                    <sql>description</sql>
+                    <default_value />
+                    <is_null_allowed>true</is_null_allowed>
+                </field>
+                <field id="functionalci_list" xsi:type="AttributeLinkedSet">
+                    <linked_class>FunctionalCI</linked_class>
+                    <ext_key_to_me>patchmethod_id</ext_key_to_me>
+                    <edit_mode>add_only</edit_mode>
+                    <count_min>0</count_min>
+                    <count_max>0</count_max>
+                    <duplicates />
+                </field>
+            </fields>
+            <methods />
+            <presentation>
+                <details>
+                    <items>
+                        <item id="name">
+                            <rank>10</rank>
+                        </item>
+                        <item id="description">
+                            <rank>20</rank>
+                        </item>
+                        <item id="functionalci_list">
+                            <rank>100</rank>
+                        </item>
+                    </items>
+                </details>
+                <search>
+                    <items>
+                        <item id="name">
+                            <rank>10</rank>
+                        </item>
+                        <item id="description">
+                            <rank>20</rank>
+                        </item>
+                    </items>
+                </search>
+                <list>
+                    <items>
+                        <item id="description">
+                            <rank>20</rank>
+                        </item>
+                    </items>
+                </list>
+            </presentation>
+        </class>
+    </classes>
+    <!-- ***************** Menus ***************** -->
+    <menus>
+        <menu id="Typology" xsi:type="DashboardMenuNode" _delta="if_exists">
+            <definition>
+                <cells>
+                    <cell id="0">
+                        <dashlets>
+                            <dashlet id="patchmethod" xsi:type="DashletBadge" _delta="define">
+                                <rank>34.1</rank>
+                                <class>PatchMethod</class>
+                            </dashlet>
+                        </dashlets>
+                    </cell>
+                </cells>
+            </definition>
+        </menu>
+    </menus>
+    <user_rights>
+        <groups>
+            <group id="PatchManagementTypology" _delta="define">
+                <classes>
+                    <class id="PatchMethod"/>
+                </classes>
+            </group>
+        </groups>
+    </user_rights>
+</itop_design>
