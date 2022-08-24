@@ -23,6 +23,6 @@ Dict::Add('DE DE', 'German', 'Deutsch', array(
     'Class:PatchMethod+' => '',
     'Class:PatchMethod/Attribute:description' => 'Beschreibung',
     'Class:PatchMethod/Attribute:description+' => '',
-    'Class:PatchMethod/Attribute:functionalci_list' => 'Functionale CI(s)',
+    'Class:PatchMethod/Attribute:functionalci_list' => 'Funktionale CI(s)',
     'Class:PatchMethod/Attribute:functionalci_list+' => '',
 ));
