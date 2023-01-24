@@ -11,7 +11,7 @@
 Dict::Add('EN US', 'English', 'English', array(
     // Dictionary entries go here
     'Class:FunctionalCI/Attribute:patchmethod_id' => 'Patch method',
-    'Class:FunctionalCI/Attribute:patchmethod_id+' =>    'Method to patch this system',
+    'Class:FunctionalCI/Attribute:patchmethod_id+' => 'Method to patch this system',
     'Server:patchmanagement' => 'Patch Management',
 ));
 
