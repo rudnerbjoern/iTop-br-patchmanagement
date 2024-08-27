@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright   Copyright (C) 2021 Björn Rudner
+ * @copyright   Copyright (C) 2021-2024 Björn Rudner
  * @license     https://www.gnu.org/licenses/gpl-3.0.en.html
- * @version     2022-08-24
+ * @version     2024-08-27
  *
  * iTop module definition file
  */
 
 SetupWebPage::AddModule(
     __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-    'br-patchmanagement/0.2.0',
+    'br-patchmanagement/0.3.0',
     array(
         // Identification
         //
@@ -20,17 +20,16 @@ SetupWebPage::AddModule(
         // Setup
         //
         'dependencies' => array(
-            'itop-config-mgmt/2.4.0',
+            '(itop-config-mgmt/2.5.0 & itop-config-mgmt/<3.0.0)||itop-structure/3.0.0',
             'itop-virtualization-mgmt/0.0.0'
         ),
         'mandatory' => false,
         'visible' => true,
+        'installer' => 'PatchManagementInstaller',
 
         // Components
         //
-        'datamodel' => array(
-            'model.br-patchmanagement.php'
-        ),
+        'datamodel' => array(),
         'webservice' => array(),
         'data.struct' => array(
             // add your 'structure' definition XML files here,
@@ -56,7 +55,7 @@ if (!class_exists('PatchManagementInstaller')) {
     /**
      * Class PatchManagementInstaller
      *
-     * @since v0.2.0
+     * @since v0.2.1
      */
     class PatchManagementInstaller extends ModuleInstallerAPI
     {
@@ -68,7 +67,7 @@ if (!class_exists('PatchManagementInstaller')) {
         }
         public static function AfterDatabaseCreation(Config $oConfiguration, $sPreviousVersion, $sCurrentVersion)
         {
-            if (version_compare($sPreviousVersion, '0.2.0', '<')) {
+            if (version_compare($sPreviousVersion, '0.2.1', '<')) {
 
                 SetupLog::Info("|- Upgrading br-patchmanagement from '$sPreviousVersion' to '$sCurrentVersion'.");
 
