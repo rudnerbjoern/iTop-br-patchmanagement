@@ -10,7 +10,7 @@
 
 SetupWebPage::AddModule(
     __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-    'br-patchmanagement/0.2.0',
+    'br-patchmanagement/0.2.1',
     array(
         // Identification
         //
@@ -25,6 +25,7 @@ SetupWebPage::AddModule(
         ),
         'mandatory' => false,
         'visible' => true,
+        'installer' => 'PatchManagementInstaller',
 
         // Components
         //
@@ -54,7 +55,7 @@ if (!class_exists('PatchManagementInstaller')) {
     /**
      * Class PatchManagementInstaller
      *
-     * @since v0.2.0
+     * @since v0.2.1
      */
     class PatchManagementInstaller extends ModuleInstallerAPI
     {
@@ -66,7 +67,7 @@ if (!class_exists('PatchManagementInstaller')) {
         }
         public static function AfterDatabaseCreation(Config $oConfiguration, $sPreviousVersion, $sCurrentVersion)
         {
-            if (version_compare($sPreviousVersion, '0.2.0', '<')) {
+            if (version_compare($sPreviousVersion, '0.2.1', '<')) {
 
                 SetupLog::Info("|- Upgrading br-patchmanagement from '$sPreviousVersion' to '$sCurrentVersion'.");
 
