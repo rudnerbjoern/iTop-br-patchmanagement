@@ -79,10 +79,13 @@ if (!class_exists('PatchManagementInstaller')) {
                     'Exception Defined',
                 );
                 foreach ($aPMNames as $sPMName) {
-                    $oPM = MetaModel::NewObject('PatchMethod');
-                    $oPM->Set('name', $sPMName);
-                    $oPM->DBWrite();
-                    SetupLog::Info("|  |- PatchMethod '$sPMName' created.");
+                    $oSearch = DBSearch::FromOQL('SELECT PatchMethod WHERE name = :name');
+                    $oSet = new DBObjectSet($oSearch, array(), array('name' => $sPMName));
+                    if ($oSet->Count() == 0) {
+                        $oPM = MetaModel::NewObject('PatchMethod', array('name' => $sPMName));
+                        $oPM->DBInsert();
+                        SetupLog::Info("|  |- PatchMethod '$sPMName' created.");
+                    }
                 }
             }
         }
