@@ -12,6 +12,8 @@ Dict::Add('EN US', 'English', 'English', array(
     // Dictionary entries go here
     'Class:FunctionalCI/Attribute:patchmethod_id' => 'Patch method',
     'Class:FunctionalCI/Attribute:patchmethod_id+' => 'Method to patch this system',
+    'Class:FunctionalCI/Attribute:patchgroup_id' => 'Patch group',
+    'Class:FunctionalCI/Attribute:patchgroup_id+' => 'Patch group this system belongs to',
     'Server:patchmanagement' => 'Patch Management',
 ));
 
@@ -25,4 +27,16 @@ Dict::Add('EN US', 'English', 'English', array(
     'Class:PatchMethod/Attribute:description+' => '',
     'Class:PatchMethod/Attribute:functionalci_list' => 'Functional CI(s)',
     'Class:PatchMethod/Attribute:functionalci_list+' => '',
+));
+
+//
+// Class: PatchGroup
+//
+Dict::Add('EN US', 'English', 'English', array(
+    'Class:PatchGroup' => 'Patch Group',
+    'Class:PatchGroup+' => '',
+    'Class:PatchGroup/Attribute:description' => 'Description',
+    'Class:PatchGroup/Attribute:description+' => '',
+    'Class:PatchGroup/Attribute:functionalci_list' => 'Functional CI(s)',
+    'Class:PatchGroup/Attribute:functionalci_list+' => '',
 ));
