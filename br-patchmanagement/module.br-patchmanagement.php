@@ -108,6 +108,23 @@ if (!class_exists('PatchManagementInstaller')) {
                         SetupLog::Info("|  |- PatchGroup '$sPatchGroupName' created.");
                     }
                 }
+
+                $aPatchRebootNames = array(
+                    'Everytime',
+                    'Daily 06:00-08:00',
+                    'Daily 09:00-17:00',
+                    'Daily 19:00-05:00',
+                    'Monday 02:00',
+                );
+                foreach ($aPatchRebootNames as $sPatchRebootName) {
+                    $oSearch = DBSearch::FromOQL('SELECT PatchGroup WHERE name = :name');
+                    $oSet = new DBObjectSet($oSearch, array(), array('name' => $sPatchRebootName));
+                    if ($oSet->Count() == 0) {
+                        $oPM = MetaModel::NewObject('PatchGroup', array('name' => $sPatchRebootName));
+                        $oPM->DBInsert();
+                        SetupLog::Info("|  |- PatchReboot '$sPatchRebootName' created.");
+                    }
+                }
             }
         }
     }

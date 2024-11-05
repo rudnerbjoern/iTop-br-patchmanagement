@@ -14,6 +14,8 @@ Dict::Add('DE DE', 'German', 'Deutsch', array(
     'Class:FunctionalCI/Attribute:patchmethod_id+' => 'Methode, das System zu patchen',
     'Class:FunctionalCI/Attribute:patchgroup_id' => 'Patch Gruppe',
     'Class:FunctionalCI/Attribute:patchgroup_id+' => 'Patch Gruppe zu der das System gehört',
+    'Class:FunctionalCI/Attribute:patchreboot_id' => 'Patch Neustart',
+    'Class:FunctionalCI/Attribute:patchreboot_id+' => 'Zeitfenster für den Neustart des Systems',
     'Server:patchmanagement' => 'Patch Management',
 ));
 
@@ -39,4 +41,16 @@ Dict::Add('DE DE', 'German', 'Deutsch', array(
     'Class:PatchGroup/Attribute:description+' => '',
     'Class:PatchGroup/Attribute:functionalci_list' => 'Funktionale CI(s)',
     'Class:PatchGroup/Attribute:functionalci_list+' => '',
+));
+
+//
+// Class: PatchReboot
+//
+Dict::Add('DE DE', 'German', 'Deutsch', array(
+    'Class:PatchReboot' => 'Patch Neustart',
+    'Class:PatchReboot+' => '',
+    'Class:PatchReboot/Attribute:description' => 'Beschreibung',
+    'Class:PatchReboot/Attribute:description+' => '',
+    'Class:PatchReboot/Attribute:functionalci_list' => 'Funktionale CI(s)',
+    'Class:PatchReboot/Attribute:functionalci_list+' => '',
 ));
