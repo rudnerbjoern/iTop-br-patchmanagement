@@ -117,10 +117,10 @@ if (!class_exists('PatchManagementInstaller')) {
                     'Monday 02:00',
                 );
                 foreach ($aPatchRebootNames as $sPatchRebootName) {
-                    $oSearch = DBSearch::FromOQL('SELECT PatchGroup WHERE name = :name');
+                    $oSearch = DBSearch::FromOQL('SELECT PatchReboot WHERE name = :name');
                     $oSet = new DBObjectSet($oSearch, array(), array('name' => $sPatchRebootName));
                     if ($oSet->Count() == 0) {
-                        $oPM = MetaModel::NewObject('PatchGroup', array('name' => $sPatchRebootName));
+                        $oPM = MetaModel::NewObject('PatchReboot', array('name' => $sPatchRebootName));
                         $oPM->DBInsert();
                         SetupLog::Info("|  |- PatchReboot '$sPatchRebootName' created.");
                     }
