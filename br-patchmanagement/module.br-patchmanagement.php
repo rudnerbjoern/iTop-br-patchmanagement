@@ -89,6 +89,27 @@ if (!class_exists('PatchManagementInstaller')) {
                     }
                 }
             }
+            if (version_compare($sPreviousVersion, '3.1.5', '<')) {
+
+                SetupLog::Info("|- Upgrading br-patchmanagement from '$sPreviousVersion' to '$sCurrentVersion'.");
+
+                $aPatchGroupNames = array(
+                    'Manually',
+                    'Server Monday 02:00',
+                    'Server Daily 23:00',
+                    'Server Daily 01:00',
+                    'Client Daily 10:00',
+                );
+                foreach ($aPatchGroupNames as $sPatchGroupName) {
+                    $oSearch = DBSearch::FromOQL('SELECT PatchGroup WHERE name = :name');
+                    $oSet = new DBObjectSet($oSearch, array(), array('name' => $sPatchGroupName));
+                    if ($oSet->Count() == 0) {
+                        $oPM = MetaModel::NewObject('PatchGroup', array('name' => $sPatchGroupName));
+                        $oPM->DBInsert();
+                        SetupLog::Info("|  |- PatchGroup '$sPatchGroupName' created.");
+                    }
+                }
+            }
         }
     }
 }
