@@ -3,14 +3,14 @@
 /**
  * @copyright   Copyright (C) 2021-2024 Björn Rudner
  * @license     https://www.gnu.org/licenses/gpl-3.0.en.html
- * @version     2024-09-11
+ * @version     2024-11-05
  *
  * iTop module definition file
  */
 
 SetupWebPage::AddModule(
     __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-    'br-patchmanagement/2.7.4',
+    'br-patchmanagement/2.7.5',
     array(
         // Identification
         //
@@ -89,7 +89,7 @@ if (!class_exists('PatchManagementInstaller')) {
                     }
                 }
             }
-            if (version_compare($sPreviousVersion, '3.1.5', '<')) {
+            if (version_compare($sPreviousVersion, '2.7.5', '<')) {
 
                 SetupLog::Info("|- Upgrading br-patchmanagement from '$sPreviousVersion' to '$sCurrentVersion'.");
 
