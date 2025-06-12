@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright   Copyright (C) 2021-2024 Björn Rudner
+ * @copyright   Copyright (C) 2021-2025 Björn Rudner
  * @license     https://www.gnu.org/licenses/gpl-3.0.en.html
- * @version     2024-11-05
+ * @version     2025-06-12
  *
  * iTop module definition file
  */
 
 SetupWebPage::AddModule(
     __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-    'br-patchmanagement/3.1.5',
+    'br-patchmanagement/3.2.0',
     array(
         // Identification
         //
@@ -20,9 +20,9 @@ SetupWebPage::AddModule(
         // Setup
         //
         'dependencies' => array(
-            'itop-config-mgmt/3.1.0',
-            'itop-datacenter-mgmt/3.1.0',
-            'itop-virtualization-mgmt/3.1.0',
+            'itop-config-mgmt/3.2.0',
+            'itop-datacenter-mgmt/3.2.0',
+            'itop-virtualization-mgmt/3.2.0',
         ),
         'mandatory' => false,
         'visible' => true,
