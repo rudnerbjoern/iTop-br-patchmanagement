@@ -17,5 +17,8 @@
         "patchmanagement",
         "patchmethod",
         "patchreboot"
-    ]
+    ],
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "editor.formatOnPaste": true
 }
