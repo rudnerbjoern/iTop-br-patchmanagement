@@ -9,7 +9,7 @@
 
 SetupWebPage::AddModule(
     __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-    'br-patchmanagement/3.2.0',
+    'br-patchmanagement/3.2.1',
     array(
         // Identification
         //
